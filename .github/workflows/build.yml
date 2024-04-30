@@ -42,6 +42,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
             cd backend/
+            mvn -B clean jacoco:prepare-agent install jacoco:report
             mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=monorepo-simple-backend -Dsonar.projectName=monorepo-simple-backend -Dsonar.coverage.jacoco.xmlReportPaths=./target/site/jacoco/jacoco.xml
         # Replace variables with project path, key and name
   sonarqube-scan-frontend:
