@@ -1,12 +1,11 @@
-name: Build
+name: backend-build
 
 on:
   push:
     branches:
       - main # main branch name
     paths:
-      - 'frontend/**' # monorepo projects paths from the monorepo root directory
-      - 'backend/**'
+      - 'backend/**' # monorepo projects paths from the monorepo root directory
   pull_request:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
@@ -45,20 +44,3 @@ jobs:
             mvn -B clean jacoco:prepare-agent install jacoco:report
             mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=monorepo-simple-backend -Dsonar.projectName=monorepo-simple-backend -Dsonar.coverage.jacoco.xmlReportPaths=./target/site/jacoco/jacoco.xml
         # Replace variables with project path, key and name
-  sonarqube-scan-frontend:
-    name: sonarqube-scan-frontend
-    runs-on: ubuntu-latest
-    permissions: read-all
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Run Unit Tests and Output Coverage
-        run: cd frontend && npm install && npm run coverage
-      - uses: sonarsource/sonarqube-scan-action@master
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
-        # project path from the monorepo root directory
-        with:
-          projectBaseDir: frontend/
