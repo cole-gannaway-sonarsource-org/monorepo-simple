@@ -38,7 +38,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: SonarQube Scan 1
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_1 }}  # analysis token associated to your project
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # analysis token associated to your project
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
             cd backend/
