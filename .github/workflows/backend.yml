@@ -7,6 +7,8 @@ on:
     paths:
       - 'backend/**' # monorepo projects paths from the monorepo root directory
   pull_request:
+    paths:
+      - 'backend/**' # monorepo projects paths from the monorepo root directory
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
