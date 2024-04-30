@@ -42,7 +42,7 @@ jobs:
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
             cd backend/
-            mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=monorepo-simple-backend
+            mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
         # Replace variables with project path, key and name
   sonarqube-scan-frontend:
     name: sonarqube-scan-frontend
