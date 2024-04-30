@@ -13,7 +13,7 @@ public class App
         System.out.println( "Hello World!" );
         SecureRandom sr = new SecureRandom();
         sr.setSeed(123456L); // Noncompliant
-        int v = sr.next(32);
+        int v = sr.nextInt(32);
         System.out.println("v = " + v);
     }
 }
