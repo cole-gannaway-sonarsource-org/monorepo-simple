@@ -12,8 +12,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  sonarqube-scan-frontend:
-    name: sonarqube-scan-frontend
+  sonarqube-scan-backend:
+    name: sonarqube-scan-backend
     runs-on: ubuntu-latest
     
     steps:
@@ -41,7 +41,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_1 }}  # analysis token associated to your project
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
-            cd frontend/
+            cd backend/
             mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=cole-gannaway-sonarsource-org_monorepo-simple_5e62e178-e925-43bb-84b4-330419f94999 -Dsonar.projectName='monorepo-simple' 
         # Replace variables with project path, key and name
   
